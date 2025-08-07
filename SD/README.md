@@ -8,7 +8,7 @@
 4. Maintainability  
 5. Performance  
 
-> 💡 *System Design is about designing how a complete software system works from the inside out — not just writing code, but thinking deeply about how parts interact, how data flows, how users engage with the system, and how it behaves at scale.*
+> *System Design is about designing how a complete software system works from the inside out — not just writing code, but thinking deeply about how parts interact, how data flows, how users engage with the system, and how it behaves at scale.*
 
 ---
 
