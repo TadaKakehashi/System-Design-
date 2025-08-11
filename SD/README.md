@@ -131,15 +131,37 @@ In Distributed System => Latency = network delay + computational delay
 Amount of work a system can process in a given period of time:
 -> It is usually measured as **bits per second (bps)**. {Number of requests per second}
 
-Causes of low throughput:
+### Causes of low throughput:
  - Latency
  - Protocol Overhead (To and fro communication between server)
  - Congestion
-Improving throughput:
+
+### Improving throughput:
  - Use LoadBalancers
  - Use Distributed System
  - Caching
  - CDN
 
 ---
-  
+
+# Availability:-
+Percentage of time a system is operational and accessible to its users.
+-> Availability = Uptime/Uptime + Downtime X 100%
+
+![Availability](Images/Availability.png)
+
+### How to increase?
+- Replication {includes redundancy, but involves the copying of data from one node to another or the synchronization of states between nodes}
+- Distributed System
+- Redundancy {Redundancy is the duplication of nodes, in case of some of them may or do fail}
+
+### Why Distributed Systems often have higher Availability?
+- Redundancy: Data and services can be replicated across nodes and regions.
+- Load Balancing: Traffic can be redirected to healthy nodes during failures.
+- Partial Failure Tolerance: One part can fail without taking down the whole system.
+
+Example:- 
+Distributed System: Netfilx -> If one server fails, the load balancer routes users to another region
+Monolithic: A Legacy payroll app hosted on one or premise server if that servers PSU fails, payroll is down untill repairs.
+
+---  
