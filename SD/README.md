@@ -72,7 +72,6 @@ System design becomes essential when:
 
 ---
 # Types of Architecture Design
-
 ## A. Monolithic Architecture: 
 If all the components and functionalities of a project are entangled and combined in a single codebase, then it is called a monolithic architecture.
 
