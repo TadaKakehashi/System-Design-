@@ -71,8 +71,9 @@ System design becomes essential when:
 - Internal business logic breakdown  
 
 ---
+# Types of Architecture Design
 
-# A. Monolithic Architecture: 
+## A. Monolithic Architecture: 
 If all the components and functionalities of a project are entangled and combined in a single codebase, then it is called a monolithic architecture.
 
 ![Monolithic Example](Images/Monolithic.png)
@@ -90,7 +91,55 @@ If all the components and functionalities of a project are entangled and combine
 3. If there is any change in a single module's programming language or framework, it will affect the entire system.
 
 
+## B. Distributed System:
+A distributed system is a collection of multiple individual system's connected through a network that shares resources, communicate and coordinate to achieve a common goal.
+(different modules are connected to each others to accomplish a single goal)
 
-  
-     
+### Advantages:
+- Scalable (We can easily add more machines to handle increased load -> scale horizontally)
+- No single point of failure (If one machine fails, the system can continue functionally by rerouting tasks to others)
+- Low Latency
+
+### Disadvantages:
+- Complexity (hard to design, develop and maintain)
+- Management requirements
+- Difficult to secure
+- Message may be lost in between nodes
+
+Example:-
+   ***Google Search Engine - uses thousands of distributed servers worldwide to handle billions of queries***
+
+![Distributed System](Images/Distributed_System.png)
+
+---
+
+# Latency: 
+It is the time delay between a user's action and the system's response.
+
+**Latency = network delay + computational delay**
+In Monolithic => Latency = computational delay (as a single component)
+In Distributed System => Latency = network delay + computational delay
+
+![Latency](Images/Latency.png)  
+ Total time = t1 + t2 + t3
+### Ways to Reduce Latency:
+1. Caching - Store frequently accessed data in memory, reduces repeated trips to the database.
+2. CDN (Content Delivery Network) - CDNs are geographically distributed networks of proxy server.
+---
+
+# Throughput:-
+Amount of work a system can process in a given period of time:
+-> It is usually measured as **bits per second (bps)**. {Number of requests per second}
+
+Causes of low throughput:
+ - Latency
+ - Protocol Overhead (To and fro communication between server)
+ - Congestion
+Improving throughput:
+ - Use LoadBalancers
+ - Use Distributed System
+ - Caching
+ - CDN
+
+---
   
