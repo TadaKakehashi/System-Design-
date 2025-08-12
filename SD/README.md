@@ -164,3 +164,41 @@ Distributed System: Netfilx -> If one server fails, the load balancer routes use
 Monolithic: A Legacy payroll app hosted on one or premise server if that servers PSU fails, payroll is down untill repairs.
 
 ---  
+
+# Consistency
+When more than one client requests the system, for all such requests, it will be called consistent when each client gets the same data.
+The data should always be consistent regardless of who is accessing it.
+
+### Dirty Read:- 
+When more than one client requests the system, for all such requests when different clients get different responses due to some recent update that has not been committed to all systems yet, this reading operation is called dirty read.
+
+![Consistency](Images/Consistency.png)
+
+### Factors Imporving Consistency:
+- Improving Network Bandwidht
+- Stopping the read operation
+- Replication based on distance aware strategies (keeping server close to each other geographically)
+
+## Types of Consistency:
+1. Strong Consistency - When the system doesnt allow read operations untill all the nodes with replicated data are updated. (no dirty reads)
+2. Eventual Consistency - User read requests are not halted till all the replica's are updated, rather it updates the process eventaully. Some user's may recieve old data but eventually all the data is updated to the latest data.
+3. Weak Consistency - Weak Consistency means that in a distributed system, after you update a value, not all nodes are guaranteed to have the updated data immediately, and there’s no strict guarantee on when they will become consistent.
+
+---
+# CAP Theorem:
+It states that it is possible to attain only two properties and the third would be always compromised.
+C -> Consistency
+A -> Availability
+P -> Partition Tolerance
+
+![CAP Theorem](Images/CAP.png)
+
+1. Consistency:- All nodes see the same data at the same time
+    If you read after a write, you get the latest value.
+    Example: In a bank system, after transferring money, both your account and the receivers account show the updated balance instantly
+    
+2. Availability:- Every request gets a (non-error) response - even if its not the latest data.
+    The system is always operational for reads/writes.
+   
+3. Partition Tolerance:- The system continues to operate despite network failures that split it into parts.
+    In real world distributed system, Partition Tolerance is unavoidable (network can fail)
