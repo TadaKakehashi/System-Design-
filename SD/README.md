@@ -202,3 +202,41 @@ P -> Partition Tolerance
    
 3. Partition Tolerance:- The system continues to operate despite network failures that split it into parts.
     In real world distributed system, Partition Tolerance is unavoidable (network can fail)
+
+
+## Why all three arent possible?
+- Distributed systems reply on networks
+     -> Data is stored across multiple nodes in different locations
+     -> Nodes need to communicate to stay in sync
+  - Network can fail (Partition Tolerance is unavoidable)
+       -> Network partitioning means some nodes cant talk to others
+          example: Data Center A loses connection to Data Center B
+    - When a partition occurs, we have two choices:
+         1) **Ensure Consistency (C)**:
+            Wait until nodes reconnect and agree on the latest data before responding.
+            (During the partition, you cannot serve requests from some nodes)
+            -> Availability drops (example: Banks, Trading, Ticket Booking)
+         2) **Ensure Availability (A)**:
+            Keep serving requests from all nodes, even if they have outdated data
+            (Data may be inconsistent --> Consistency drops)
+            
+      - **Trying to gurantee both (C & A) during a partition breaks logic**:-
+           - If you resposnd immediately (availability), you might give outdated data (breaking consistency)
+           - If you wait for fresh data (consistency), you might not respond at all (breaking availability)
+
+---
+
+# Scalabilty: 
+It is the ability of a system to handle increasing load (more data, more requests, more users) by adding resources (hardware, nodes, processing power) without degrading performance.
+Two types of Scalability-
+#### 1) Vertical Scalablity:
+Add more power to a single machine
+- Example: upgrading CPU, adding RAM, using faster storage
+- Pros: Easier to implement, no code change for many app.
+- Cons: Hardware Limits, Downtime for upgrade, Expensive at scaling
+
+#### 2) Horizontal Scalability
+Add more servers/machines to distribute the load.
+- Example: adding more web servers behind a load balancer.
+- Pros: No single hardware limit, high availability
+- Cons: Require distributed system
