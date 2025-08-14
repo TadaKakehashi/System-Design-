@@ -240,3 +240,74 @@ Add more servers/machines to distribute the load.
 - Example: adding more web servers behind a load balancer.
 - Pros: No single hardware limit, high availability
 - Cons: Require distributed system
+
+---
+# Redundancy
+
+**Definition:**  
+Duplication of nodes or components so that when a node/component fails, a duplicate node is available to service customers.  
+*(Nodes = Servers)*
+## Types of Redundancy
+
+### 1) Active Redundancy
+- All units are **operating/active** and **responding** to requests.  
+- Multiple nodes are connected to a **load balancer**, and each node receives an **equal share** of the load.  
+- Example: Multiple web servers behind a load balancer, all serving requests simultaneously.
+
+### 2) Passive Redundancy
+- Only **one node** is active at a time, others are in **standby** mode.  
+- If the active node fails, a **passive node** takes over to maintain availability.  
+- Example: Master–Slave database setup where slave becomes master after failover.
+
+---
+
+# Replication
+
+**Formula:**  
+Replication = **Redundancy + Synchronization**
+
+**Goal:**  
+Ensure that **all data or components** remain in sync across multiple servers to improve **availability** and **fault tolerance**.
+## Types of Replication
+
+### 1) Passive Replication (Master–Slave)
+
+- **Flow:**  
+  `Master → Slave(s)`  
+  The master handles all client requests and updates. Slaves receive updates from the master.
+
+- **Failover:**  
+  If the **master** goes down, one of the slaves is promoted to be the new master.
+
+- **Synchronization Modes:**  
+  - **Synchronous:**  
+    Changes are written to the **master** and **slave** at the **same time**.  
+    ✅ Strong consistency  
+    ❌ Higher latency  
+  - **Asynchronous:**  
+    Changes are written to the **master** first, then queued and applied later to the slave(s).  
+    ✅ Lower latency  
+    ❌ Risk of data loss if master fails before sync
+    
+### 2) Active Replication (State Machine Replication)
+
+- **Flow:**  
+  All replicas receive the **same requests** in the **same order** and process them **in parallel**.
+
+- **Mechanism:**  
+  Requires a **consensus protocol** (e.g., Paxos, Raft) to ensure identical execution order across replicas.
+
+- **Failover:**  
+  No promotion needed — all replicas are already active.
+
+## Passive vs Active Replication
+
+| Feature              | Passive Replication (Master–Slave)           | Active Replication (State Machine)      |
+|----------------------|-----------------------------------------------|------------------------------------------|
+| Request Handling     | Only master handles client requests           | All replicas handle requests             |
+| Failure Handling     | Promote slave to master                       | No promotion needed                      |
+| Performance          | Lower overhead                                | Higher overhead due to synchronization   |
+| Consistency Control  | Master decides updates                        | Consensus protocol decides order         |
+| Latency              | Lower (esp. in async mode)                    | Higher due to agreement step             |
+
+---
